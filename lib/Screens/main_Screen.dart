@@ -2,6 +2,7 @@
 
 import 'dart:ffi';
 
+import 'package:arom_proj_meomeok/Screens/rand.dart';
 import 'package:flutter/material.dart';
 
 class mainScreen extends StatelessWidget {
@@ -22,11 +23,6 @@ class mainScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset('assets/logo.png'),
-              // Text(
-              //   //추후 이미지 대치로 바꿀 예정
-              //   '머먹',
-              //   style: TextStyle(color: Colors.black, fontSize: 20),
-              // ),
               SizedBox(
                 width: 13,
               ),
@@ -140,7 +136,13 @@ class mainScreen extends StatelessWidget {
                 side: MaterialStatePropertyAll(
                     BorderSide(style: BorderStyle.solid)),
                 foregroundColor: MaterialStatePropertyAll(Colors.white30)),
-            onPressed: () => print('gg'),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => randScreen(),
+                  ));
+            },
             child: Text(
               '랜덤 돌리기',
               style: TextStyle(color: Colors.black),
