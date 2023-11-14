@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:arom_proj_meomeok/models/conversation.dart';
 import 'package:flutter/material.dart';
 
 class randScreen extends StatefulWidget {
@@ -24,11 +25,12 @@ class _randScreenState extends State<randScreen> {
             height: 40,
           )),
           SizedBox(
-            width: 15,
+            width: 20,
           )
         ],
         elevation: 0,
       ),
+      body: Conversation_(),
     ));
   }
 }
