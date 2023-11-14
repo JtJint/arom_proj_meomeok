@@ -21,13 +21,14 @@ class mainScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                //추후 이미지 대치로 바꿀 예정
-                '머먹',
-                style: TextStyle(color: Colors.black, fontSize: 20),
-              ),
+              Image.asset('assets/logo.png'),
+              // Text(
+              //   //추후 이미지 대치로 바꿀 예정
+              //   '머먹',
+              //   style: TextStyle(color: Colors.black, fontSize: 20),
+              // ),
               SizedBox(
-                width: 20,
+                width: 13,
               ),
               Container(
                   width: 280,
@@ -53,7 +54,7 @@ class mainScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30))),
                   )),
               SizedBox(
-                width: 20,
+                width: 14,
               ),
               IconButton(
                   onPressed: () {
