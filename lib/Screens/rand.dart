@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:arom_proj_meomeok/Screens/main_Screen.dart';
 import 'package:arom_proj_meomeok/models/conversation.dart';
 import 'package:flutter/material.dart';
 
@@ -20,13 +21,17 @@ class _randScreenState extends State<randScreen> {
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
         actions: [
-          (Image.asset(
-            'assets/logo.png',
-            height: 40,
-          )),
-          SizedBox(
-            width: 20,
-          )
+          IconButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => mainScreen()));
+            },
+            icon: Image.asset('assets/logo.png'),
+            iconSize: 65,
+          ),
+          // SizedBox(
+          //   width: 20,
+          // )
         ],
         elevation: 0,
       ),

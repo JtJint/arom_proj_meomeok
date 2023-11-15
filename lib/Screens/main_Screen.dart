@@ -30,12 +30,16 @@ class mainScreen extends StatelessWidget {
                   width: 280,
                   height: 40,
                   decoration: BoxDecoration(
-                      border: Border(bottom: BorderSide(color: Colors.black))),
+                    border: Border.all(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(14),
+                  ),
                   child: SearchBar(
-                    leading: Icon(
-                      Icons.search,
-                      color: _black,
-                    ),
+                    trailing: [
+                      Image.asset(
+                        'assets/돋보기.png',
+                        color: Colors.grey,
+                      ),
+                    ],
                     hintText: "오늘은 머먹지..?",
                     hintStyle:
                         MaterialStatePropertyAll(TextStyle(color: Colors.grey)),
@@ -53,13 +57,11 @@ class mainScreen extends StatelessWidget {
                 width: 14,
               ),
               IconButton(
-                  onPressed: () {
-                    print('Tap!');
-                  },
-                  icon: Icon(
-                    Icons.format_list_bulleted_rounded,
-                    color: Colors.black,
-                  )),
+                onPressed: () {
+                  print('Tap!');
+                },
+                icon: Image.asset('assets/설정창.png'),
+              ),
             ],
           )
         ],
