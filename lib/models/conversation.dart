@@ -13,6 +13,11 @@ class _Conversation_State extends State<Conversation_> {
 
   @override
   Widget build(BuildContext context) {
+    setState(() {
+      if (conver_list.length == 0) conver_list.add(['오늘 머먹지...?', true]);
+    });
+    bool decide = false;
+    bool rerole = false;
     return Column(
       children: [
         Container(
@@ -26,11 +31,15 @@ class _Conversation_State extends State<Conversation_> {
         ),
         Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
           GestureDetector(
-            onTap: () => print('dd'),
+            onTap: () {
+              return setState(() {
+                if (decide == false) decide = true;
+              });
+            },
             child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
                 decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: decide ? Colors.blueAccent : Colors.white,
                     boxShadow: [
                       BoxShadow(
                           color: Colors.grey,
