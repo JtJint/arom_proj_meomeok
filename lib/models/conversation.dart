@@ -1,3 +1,5 @@
+// import 'dart:html';
+
 import 'package:flutter/material.dart';
 
 class Conversation_ extends StatefulWidget {
@@ -10,11 +12,17 @@ class Conversation_ extends StatefulWidget {
 
 class _Conversation_State extends State<Conversation_> {
   List conver_list = [];
-
+  List menu_list = [];
   @override
   Widget build(BuildContext context) {
     setState(() {
-      if (conver_list.length == 0) conver_list.add(['오늘 머먹지...?', true]);
+      // if(menu_list == 0) {
+      //   menu_list.add()
+      // }
+      if (conver_list.length == 0) {
+        conver_list.add(['오늘 머먹지...?', true]);
+        // conver_list.add(['오늘 메뉴 테마는 ${tema}로 ${menu} 어뗴요?', false]);
+      }
     });
     bool decide = false;
     bool rerole = false;
@@ -24,7 +32,7 @@ class _Conversation_State extends State<Conversation_> {
           width: 430,
           height: 530,
           color: Colors.grey,
-          child: Text('${conver_list}'),
+          child: SingleChildScrollView(child: Text('${conver_list}')),
         ),
         SizedBox(
           height: 30,
