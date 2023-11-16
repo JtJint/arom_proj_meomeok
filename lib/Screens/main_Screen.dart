@@ -102,25 +102,33 @@ class mainScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
+                  padding: EdgeInsets.symmetric(vertical: 3),
                   decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black),
+                      boxShadow: [BoxShadow(color: Colors.grey.shade300)],
                       borderRadius: BorderRadius.circular(12)),
-                  child: Column(
-                    children: [
-                      line_one(
-                          Icons.food_bank_outlined,
-                          Icons.food_bank_outlined,
-                          Icons.food_bank_outlined,
-                          Icons.food_bank_outlined,
-                          true) // 한 라인 이미지 만드는 메소드 하나로 만들수 있기는 한데 귀찮음. 걍 이렇게 만듦.,
-                      ,
-                      line_one(
-                          Icons.food_bank_outlined,
-                          Icons.food_bank_outlined,
-                          Icons.food_bank_outlined,
-                          Icons.food_bank_outlined,
-                          false),
-                    ],
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 12),
+                    decoration: BoxDecoration(
+                        boxShadow: [BoxShadow(color: Colors.white)],
+                        border: Border.all(color: Colors.white),
+                        borderRadius: BorderRadius.circular(12)),
+                    child: Column(
+                      children: [
+                        line_one(
+                            Icons.food_bank_outlined,
+                            Icons.food_bank_outlined,
+                            Icons.food_bank_outlined,
+                            Icons.food_bank_outlined,
+                            true) // 한 라인 이미지 만드는 메소드 하나로 만들수 있기는 한데 귀찮음. 걍 이렇게 만듦.,
+                        ,
+                        line_one(
+                            Icons.food_bank_outlined,
+                            Icons.food_bank_outlined,
+                            Icons.food_bank_outlined,
+                            Icons.food_bank_outlined,
+                            false),
+                      ],
+                    ),
                   ),
                 )
               ],
@@ -210,7 +218,7 @@ class _main_iconsState extends State<main_icons> {
       }),
       child: Container(
         decoration: BoxDecoration(
-            color: check ? Colors.white : Colors.grey,
+            color: check ? Colors.white : Colors.grey.shade200,
             borderRadius: widget.top
                 ? (widget.number == 1
                     ? BorderRadius.only(topLeft: Radius.circular(12))
@@ -222,7 +230,7 @@ class _main_iconsState extends State<main_icons> {
                     : widget.number == 4
                         ? BorderRadius.only(bottomRight: Radius.circular(12))
                         : null),
-            border: Border.all(color: Colors.black)),
+            border: Border.all(color: Colors.white)),
         padding: EdgeInsets.all(4),
         child: Row(
           children: [
