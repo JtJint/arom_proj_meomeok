@@ -31,7 +31,7 @@ class mainScreen extends StatelessWidget {
                 width: 13,
               ),
               Container(
-                  width: 280,
+                  width: 250,//범위 넘어가서 잠깐 바꾼 부분
                   height: 40,
                   decoration: BoxDecoration(
                       border: Border(bottom: BorderSide(color: Colors.black))),
@@ -54,7 +54,7 @@ class mainScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30))),
                   )),
               SizedBox(
-                width: 14,
+                width: 13,
               ),
               IconButton(
                   onPressed: () {
@@ -77,7 +77,7 @@ class mainScreen extends StatelessWidget {
           children: [
             Container(
               color: Colors.green,
-              width: 430,
+              width: 410,//범위 넘어가서 잠깐 바꾼 부분
               height: 300,
               child: Column(
                 //List
@@ -131,7 +131,7 @@ class mainScreen extends StatelessWidget {
         ),
 
         SizedBox(
-          height: 30,
+          height: 10, //범위 넘어가서 잠깐 바꾼 부분
         ),
         Container(
           padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
