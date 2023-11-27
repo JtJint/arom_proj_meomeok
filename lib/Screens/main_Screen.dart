@@ -2,6 +2,7 @@
 
 import 'dart:ffi';
 
+import 'package:arom_proj_meomeok/Screens/select_Screen.dart';
 import 'package:flutter/material.dart';
 
 class mainScreen extends StatelessWidget {
@@ -135,12 +136,17 @@ class mainScreen extends StatelessWidget {
         ),
         Container(
           padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-          child: TextButton(
+          child: ElevatedButton(
             style: ButtonStyle(
                 side: MaterialStatePropertyAll(
                     BorderSide(style: BorderStyle.solid)),
                 foregroundColor: MaterialStatePropertyAll(Colors.white30)),
-            onPressed: () => print('gg'),
+            onPressed: () {// 버튼을 눌렀을 때 다른 화면으로 이동
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => selectScreen()),
+              );
+            },
             child: Text(
               '랜덤 돌리기',
               style: TextStyle(color: Colors.black),
