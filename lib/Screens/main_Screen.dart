@@ -9,7 +9,7 @@ class mainScreen extends StatelessWidget {
   const mainScreen({super.key});
 
   @override
-  final _black = Colors.black;
+  // final _black = Colors.black;
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(

@@ -61,6 +61,7 @@ flutter:
     - assets/logo.png
     - assets/돋보기.png
     - assets/설정창.png
+  
     
   # To add assets to your application, add an assets section, like this:
   # assets:
