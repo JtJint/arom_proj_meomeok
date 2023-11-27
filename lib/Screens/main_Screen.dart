@@ -2,13 +2,14 @@
 
 import 'dart:ffi';
 
+import 'package:arom_proj_meomeok/Screens/rand.dart';
 import 'package:flutter/material.dart';
 
 class mainScreen extends StatelessWidget {
   const mainScreen({super.key});
 
   @override
-  final _black = Colors.black;
+  // final _black = Colors.black;
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
@@ -22,11 +23,6 @@ class mainScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset('assets/logo.png'),
-              // Text(
-              //   //추후 이미지 대치로 바꿀 예정
-              //   '머먹',
-              //   style: TextStyle(color: Colors.black, fontSize: 20),
-              // ),
               SizedBox(
                 width: 13,
               ),
@@ -34,12 +30,16 @@ class mainScreen extends StatelessWidget {
                   width: 280,
                   height: 40,
                   decoration: BoxDecoration(
-                      border: Border(bottom: BorderSide(color: Colors.black))),
+                    border: Border.all(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(14),
+                  ),
                   child: SearchBar(
-                    leading: Icon(
-                      Icons.search,
-                      color: _black,
-                    ),
+                    trailing: [
+                      Image.asset(
+                        'assets/돋보기.png',
+                        color: Colors.grey,
+                      ),
+                    ],
                     hintText: "오늘은 머먹지..?",
                     hintStyle:
                         MaterialStatePropertyAll(TextStyle(color: Colors.grey)),
@@ -57,13 +57,11 @@ class mainScreen extends StatelessWidget {
                 width: 14,
               ),
               IconButton(
-                  onPressed: () {
-                    print('Tap!');
-                  },
-                  icon: Icon(
-                    Icons.format_list_bulleted_rounded,
-                    color: Colors.black,
-                  )),
+                onPressed: () {
+                  print('Tap!');
+                },
+                icon: Image.asset('assets/설정창.png'),
+              ),
             ],
           )
         ],
@@ -104,25 +102,33 @@ class mainScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
+                  padding: EdgeInsets.symmetric(vertical: 3),
                   decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black),
+                      boxShadow: [BoxShadow(color: Colors.grey.shade300)],
                       borderRadius: BorderRadius.circular(12)),
-                  child: Column(
-                    children: [
-                      line_one(
-                          Icons.food_bank_outlined,
-                          Icons.food_bank_outlined,
-                          Icons.food_bank_outlined,
-                          Icons.food_bank_outlined,
-                          true) // 한 라인 이미지 만드는 메소드 하나로 만들수 있기는 한데 귀찮음. 걍 이렇게 만듦.,
-                      ,
-                      line_one(
-                          Icons.food_bank_outlined,
-                          Icons.food_bank_outlined,
-                          Icons.food_bank_outlined,
-                          Icons.food_bank_outlined,
-                          false),
-                    ],
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 12),
+                    decoration: BoxDecoration(
+                        boxShadow: [BoxShadow(color: Colors.white)],
+                        border: Border.all(color: Colors.white),
+                        borderRadius: BorderRadius.circular(12)),
+                    child: Column(
+                      children: [
+                        line_one(
+                            Icons.food_bank_outlined,
+                            Icons.food_bank_outlined,
+                            Icons.food_bank_outlined,
+                            Icons.food_bank_outlined,
+                            true) // 한 라인 이미지 만드는 메소드 하나로 만들수 있기는 한데 귀찮음. 걍 이렇게 만듦.,
+                        ,
+                        line_one(
+                            Icons.food_bank_outlined,
+                            Icons.food_bank_outlined,
+                            Icons.food_bank_outlined,
+                            Icons.food_bank_outlined,
+                            false),
+                      ],
+                    ),
                   ),
                 )
               ],
@@ -140,7 +146,13 @@ class mainScreen extends StatelessWidget {
                 side: MaterialStatePropertyAll(
                     BorderSide(style: BorderStyle.solid)),
                 foregroundColor: MaterialStatePropertyAll(Colors.white30)),
-            onPressed: () => print('gg'),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => randScreen(),
+                  ));
+            },
             child: Text(
               '랜덤 돌리기',
               style: TextStyle(color: Colors.black),
@@ -206,7 +218,7 @@ class _main_iconsState extends State<main_icons> {
       }),
       child: Container(
         decoration: BoxDecoration(
-            color: check ? Colors.white : Colors.grey,
+            color: check ? Colors.white : Colors.grey.shade200,
             borderRadius: widget.top
                 ? (widget.number == 1
                     ? BorderRadius.only(topLeft: Radius.circular(12))
@@ -218,7 +230,7 @@ class _main_iconsState extends State<main_icons> {
                     : widget.number == 4
                         ? BorderRadius.only(bottomRight: Radius.circular(12))
                         : null),
-            border: Border.all(color: Colors.black)),
+            border: Border.all(color: Colors.white)),
         padding: EdgeInsets.all(4),
         child: Row(
           children: [
