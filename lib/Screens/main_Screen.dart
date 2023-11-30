@@ -136,16 +136,18 @@ class mainScreen extends StatelessWidget {
         ),
         Container(
           padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-          child: ElevatedButton(
+          child: TextButton(
             style: ButtonStyle(
                 side: MaterialStatePropertyAll(
                     BorderSide(style: BorderStyle.solid)),
                 foregroundColor: MaterialStatePropertyAll(Colors.white30)),
-            onPressed: () {// 버튼을 눌렀을 때 다른 화면으로 이동
+
+            onPressed: () {
               Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => selectScreen()),
-              );
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => selectScreen(),
+                  ));
             },
             child: Text(
               '랜덤 돌리기',

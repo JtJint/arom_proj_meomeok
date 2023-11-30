@@ -1,6 +1,8 @@
 import 'package:arom_proj_meomeok/Screens/main_Screen.dart';
 import 'package:flutter/material.dart';
 
+import 'Screens/select_Screen.dart';
+
 void main() {
   runApp(const MyApp());
 }

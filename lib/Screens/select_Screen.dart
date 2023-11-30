@@ -2,13 +2,20 @@
 
 import 'dart:ffi';
 
+import 'package:arom_proj_meomeok/Screens/main_Screen.dart';
 import 'package:flutter/material.dart';
 
-class selectScreen extends StatelessWidget {
+class selectScreen extends StatefulWidget {
   const selectScreen({super.key});
 
   @override
+  State<selectScreen> createState() => _selectScreenState();
+}
+
+class _selectScreenState extends State<selectScreen> {
+  @override
   final _black = Colors.black;
+
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
@@ -114,8 +121,12 @@ class selectScreen extends StatelessWidget {
                           foregroundColor: MaterialStatePropertyAll(Colors.white30)),
                       onPressed: () => print('gg'),
                       child: Text(
-                        '확정',
-                        style: TextStyle(color: Colors.black),
+                        '다시 돌리기',
+                        style: TextStyle(color: Colors.black,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+
+                        ),
                       ),
                     ),
 
@@ -129,10 +140,15 @@ class selectScreen extends StatelessWidget {
                           side: MaterialStatePropertyAll(
                               BorderSide(style: BorderStyle.solid)),
                           foregroundColor: MaterialStatePropertyAll(Colors.white30)),
-                      onPressed: () => print('gg'),
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => mainScreen()));
+                      },
                       child: Text(
-                        '다시 돌리기',
-                        style: TextStyle(color: Colors.black
+                        '메인으로',
+                        style: TextStyle(color: Colors.black,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600
                         ),
                       ),
                     ),
