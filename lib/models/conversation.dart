@@ -19,6 +19,7 @@ class Conversation_ extends StatefulWidget {
 class _Conversation_State extends State<Conversation_> {
   List conver_list = [];
   List menu_list = [];
+  List prt_menu = [];
   int idx = 0;
   String filePath_K =
       '/Users/jeongjitae/Projects/arom_proj_meomeok/lib/models/Txt/korean';
@@ -29,19 +30,20 @@ class _Conversation_State extends State<Conversation_> {
   void initState() {
     conver_list = [];
     menu_list = [];
-    conver_list.add(['오늘 머먹지...?', true]);
+    conver_list.add('오늘 머먹지...?');
   }
 
   Future<List> Make_menus() async {
     menu_list.add(await readFile(filePath_K));
     menu_list.add(await readFile(filepath_W));
-    converState();
+    prt_menu = [converState()];
+
     return menu_list;
   }
 
-  Future<List>? converState() {
-    List a = [rand_rt(menu_list), false];
-    conver_list.add(a);
+  List<String> converState() {
+    List<String> a = rand_rt(menu_list);
+    return a;
   }
 
   @override
@@ -52,10 +54,10 @@ class _Conversation_State extends State<Conversation_> {
       //future build 실행부
       children: [
         Container(
-          // container 에서 future build 실행해야함.
+          // cßontainer 에서 future build 실행해야함.
           width: 430,
-          height: 530,
-          color: Colors.grey,
+          height: 330,
+          color: Colors.lightBlue.shade100,
           child: FutureBuilder(
               future: Make_menus(),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -70,7 +72,56 @@ class _Conversation_State extends State<Conversation_> {
                     ),
                   );
                 } else {
-                  return Text("${conver_list}");
+                  return Column(children: [
+                    SizedBox(
+                      height: 60,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                              color: Colors.blue,
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(12),
+                                  topRight: Radius.circular(12),
+                                  bottomLeft: Radius.circular(12))),
+                          child: Text(
+                            '${conver_list[0]}',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 18,
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 60,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          width: 18,
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                              color: Colors.blue,
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(12),
+                                  topRight: Radius.circular(12),
+                                  bottomRight: Radius.circular(12))),
+                          child: Text(
+                            '오늘은 ${prt_menu[0][0]}${prt_menu[0][1]}어때요?',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ]);
                 }
               }),
         ),
@@ -79,12 +130,7 @@ class _Conversation_State extends State<Conversation_> {
         ),
         Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
           GestureDetector(
-            onTap: () {
-              return setState(() {
-                decide = !decide;
-                print(decide);
-              });
-            },
+            onTap: () {},
             child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
                 decoration: BoxDecoration(
@@ -105,7 +151,13 @@ class _Conversation_State extends State<Conversation_> {
                 )),
           ),
           GestureDetector(
-            onTap: () => print('list.add'),
+            onTap: () => setState(() {
+              anotherMenu() {
+                // conver_list.add(['다른거!', true]);
+              }
+
+              ;
+            }),
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
               decoration: BoxDecoration(
