@@ -100,27 +100,56 @@ class _Conversation_State extends State<Conversation_> {
                     SizedBox(
                       height: 60,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          width: 18,
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                              color: Colors.blue,
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(12),
-                                  topRight: Radius.circular(12),
-                                  bottomRight: Radius.circular(12))),
-                          child: Text(
-                            '오늘은 ${prt_menu[0][0]}${prt_menu[0][1]}어때요?',
-                            style: TextStyle(fontSize: 20),
-                          ),
-                        ),
-                      ],
-                    ),
+                    FutureBuilder(
+                        future: fectch(),
+                        builder:
+                            (BuildContext context, AsyncSnapshot snapshot) {
+                          if (snapshot.hasData == true) {
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  width: 18,
+                                ),
+                                Container(
+                                  padding: EdgeInsets.all(5),
+                                  decoration: BoxDecoration(
+                                      color: Colors.blue,
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(12),
+                                          topRight: Radius.circular(12),
+                                          bottomRight: Radius.circular(12))),
+                                  child: Text(
+                                    '오늘은 ${prt_menu[0][0]}${prt_menu[0][1]}어때요?',
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                ),
+                              ],
+                            );
+                          } else {
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  width: 18,
+                                ),
+                                Container(
+                                  padding: EdgeInsets.all(5),
+                                  decoration: BoxDecoration(
+                                      color: Colors.blue,
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(12),
+                                          topRight: Radius.circular(12),
+                                          bottomRight: Radius.circular(12))),
+                                  child: Text(
+                                    '....',
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                ),
+                              ],
+                            );
+                          }
+                        }),
                   ]);
                 }
               }),
@@ -223,4 +252,9 @@ Future<List<List<String>>> readFile(String filepath) async {
     }
     return rt;
   }
+}
+
+Future<String> fectch() async {
+  await Future.delayed(Duration(seconds: 1));
+  return 'a';
 }
