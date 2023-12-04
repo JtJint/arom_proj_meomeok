@@ -1,10 +1,13 @@
 // import 'dart:html';
 
 import 'dart:convert';
+import 'dart:ffi';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
+import 'dart:math';
 
+// ignore: camel_case_types
 class Conversation_ extends StatefulWidget {
   const Conversation_({
     super.key,
@@ -13,46 +16,63 @@ class Conversation_ extends StatefulWidget {
   State<Conversation_> createState() => _Conversation_State();
 }
 
-//내 가설은 뭐냐 지금 이게 상대 경로잖아 근데 이게 이미지도 내가 상대 경로로 넣었는데
-// 이때는 확장을 해서 상대경로로 넣을수 있었는데 얘도 마찬가지 이지 않을까?
-//내가 알기로는 여기서 안다른걸로 알아
 class _Conversation_State extends State<Conversation_> {
   List conver_list = [];
   List menu_list = [];
+  int idx = 0;
   String filePath_K =
       '/Users/jeongjitae/Projects/arom_proj_meomeok/lib/models/Txt/korean';
-  String filepath_W = "/Txt/western";
-  String filepath_J = '/Txt/japanes';
-  String filepath_C = "/Txt/chinese";
-  // /Users/jeongjitae/Projects/arom_proj_meomeok/lib/models/conversation.dart
-  List K_menu = [];
-  List W_menu = [];
-  List C_menu = [];
-  List J_menu = [];
+  String filepath_W =
+      '/Users/jeongjitae/Projects/arom_proj_meomeok/lib/models/Txt/western';
+  String filepath_J = 'lib/models/Txt/japanes';
+  String filepath_C = "lib/models/Txt/chinese";
+  void initState() {
+    conver_list = [];
+    menu_list = [];
+    conver_list.add(['오늘 머먹지...?', true]);
+  }
+
+  Future<List> Make_menus() async {
+    menu_list.add(await readFile(filePath_K));
+    menu_list.add(await readFile(filepath_W));
+    converState();
+    return menu_list;
+  }
+
+  Future<List>? converState() {
+    List a = [rand_rt(menu_list), false];
+    conver_list.add(a);
+  }
+
   @override
   Widget build(BuildContext context) {
-    setState(() {
-      if (menu_list.length == 0) {
-        //아니 txt파일 list로 추출하고 싶은데 어찌해야하는 지 감도 안옴 ㅋㅋ
-        // 웬만해선 json이용하세용
-        K_menu.add(readFile(filePath_K));
-        print(K_menu);
-      }
-      if (conver_list.length == 0) {
-        conver_list.add(['오늘 머먹지...?', true]);
-        // conver_list.add(['오늘 메뉴 테마는 ${tema}로 ${menu} 어뗴요?', false]);
-      }
-    });
+    initState();
     bool decide = false;
-    bool rerole = false;
     return Column(
+      //future build 실행부
       children: [
         Container(
+          // container 에서 future build 실행해야함.
           width: 430,
           height: 530,
           color: Colors.grey,
-          child:
-              SingleChildScrollView(child: Text('${conver_list}, ${K_menu}')),
+          child: FutureBuilder(
+              future: Make_menus(),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.hasData == false) {
+                  return CircularProgressIndicator();
+                } else if (snapshot.hasError) {
+                  return Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Text(
+                      'Error : ${snapshot.error}',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  );
+                } else {
+                  return Text("${conver_list}");
+                }
+              }),
         ),
         SizedBox(
           height: 50,
@@ -61,7 +81,8 @@ class _Conversation_State extends State<Conversation_> {
           GestureDetector(
             onTap: () {
               return setState(() {
-                if (decide == false) decide = true;
+                decide = !decide;
+                print(decide);
               });
             },
             child: Container(
@@ -111,24 +132,43 @@ class _Conversation_State extends State<Conversation_> {
   }
 }
 
-class make_menu_Info {
-  final String tema;
-  final String menu;
-
-  make_menu_Info(this.menu, this.tema);
-  String toList() {
-    return 'menu: ${this.menu} , tema: ${this.tema}';
+List<String> rand_rt(List menu_list) {
+  int a = 0;
+  for (var each in menu_list) {
+    for (var i in each) {
+      // print('${i}, ${a}');
+      a++;
+    }
   }
+  int rand_a = Random().nextInt(a);
+  // print('${a}, ${rand_a}');
+  a = 0;
+  for (var each in menu_list) {
+    for (var i in each) {
+      if (a == rand_a) {
+        // print('${a}, ${rand_a}, ${i}');
+        return i;
+      }
+      a += 1;
+    }
+  }
+  return ['error'];
 }
 
-Future<List<String>> readFile(String filepath) async {
-  // 이거 안되요?// 디버그는 찍어보셧나용//돌아는 가는데 이게 상태 갱신이 안댐
+Future<List<List<String>>> readFile(String filepath) async {
   File file = File("$filepath");
-  List<String> lines = await file.readAsLines();
-  List<make_menu_Info> menus = await lines.map((line) {
-    List<String> parts = line.split(':');
-    String tema = parts[0].trim();
-    String menu = parts[1].trim();
-    return make_menu_Info(tema, menu);
-  }).toList();
+  if (!(await file.exists())) {
+    print("file is null!");
+    return [
+      ['a']
+    ];
+  } else {
+    List<List<String>> rt = [];
+    List<String> lines = await file.readAsLines();
+    for (var each in lines) {
+      List<String> a = each.split(':');
+      rt.add(a);
+    }
+    return rt;
+  }
 }
