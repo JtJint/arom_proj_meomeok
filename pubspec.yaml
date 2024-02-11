@@ -31,12 +31,15 @@ dependencies:
   flutter:
     sdk: flutter
   path_provider :
+  admob_flutter: ^3.0.0
   
   path : 
 
+  http : ^1.1.0
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  firebase_core: ^2.24.2
 
 dev_dependencies:
   flutter_test:
@@ -63,8 +66,18 @@ flutter:
     - assets/logo.png
     - assets/돋보기.png
     - assets/설정창.png
-    - lib/models/Txt/korean
-    - lib/models/Txt/japanes
+    - assets/양식.png
+    - assets/일식.png
+    - assets/중식.png
+    - assets/한식.png
+    - assets/빵.png
+    - assets/고기.png
+    - assets/면.png
+    - assets/밥.png
+    - assets/아롬.png
+    - assets/광고1.jpeg
+    - assets/광고2.jpeg
+
   
     
   # To add assets to your application, add an assets section, like this:

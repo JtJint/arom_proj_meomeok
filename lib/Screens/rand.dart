@@ -1,11 +1,12 @@
-import 'dart:math';
-
 import 'package:arom_proj_meomeok/Screens/main_Screen.dart';
 import 'package:arom_proj_meomeok/models/conversation.dart';
 import 'package:flutter/material.dart';
 
 class randScreen extends StatefulWidget {
-  const randScreen({super.key});
+  const randScreen({
+    super.key,
+    required List<String> FilterId,
+  });
 
   @override
   State<randScreen> createState() => _randScreenState();
@@ -23,11 +24,11 @@ class _randScreenState extends State<randScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.push(context,
+              Navigator.pop(context,
                   MaterialPageRoute(builder: (context) => mainScreen()));
             },
-            icon: Image.asset('assets/logo.png'),
-            iconSize: 65,
+            icon: Image.asset('assets/아롬.png'),
+            iconSize: 60,
           ),
           // SizedBox(
           //   width: 20,
@@ -35,7 +36,13 @@ class _randScreenState extends State<randScreen> {
         ],
         elevation: 0,
       ),
-      body: Conversation_(),
+      body: Column(
+        children: [
+          Conversation_(
+            FilterId: filter_id,
+          ),
+        ],
+      ),
     ));
   }
 }
