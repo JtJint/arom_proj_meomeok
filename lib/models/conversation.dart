@@ -1,47 +1,51 @@
-// import 'dart:html';
-
 import 'package:arom_proj_meomeok/Screens/main_Screen.dart';
-import 'package:arom_proj_meomeok/Service/API_Service.dart';
+import 'package:arom_proj_meomeok/models/example..g.dart';
+import 'package:arom_proj_meomeok/models/widget/class/API.dart';
 
 import 'package:flutter/material.dart';
 import 'dart:math';
 
 // ignore: camel_case_types
-int idx = 0;
-
 class Conversation_ extends StatefulWidget {
   const Conversation_({super.key, required List<String> FilterId});
   @override
   State<Conversation_> createState() => _Conversation_State();
 }
 
+int a = 0;
+List<MenuModel> menu_list = [];
+List<String> prt_menu = ['a'];
+
 class _Conversation_State extends State<Conversation_> {
   late List conver_list = [];
-  late List<dynamic> menu_list = [];
-  late List prt_menu = ['a'];
+  // ignore: non_constant_identifier_names
+  // ignore: non_constant_identifier_names
 
+  // ignore: non_constant_identifier_names
+
+  @override
   void initState() {
     conver_list = [];
     menu_list = [];
     conver_list.add('오늘 머먹지...?');
+    // Make_menus(prt_menu);
   }
 
+  @override
   void converReSt() {
-    print(filter_id);
-    // idx += 2;
     setState(
       () {
-        converState(menu_list, prt_menu);
+        // print(prt_menu[0]);
+        rand_rt(prt_menu);
       },
     );
   }
-
-  // ignore: non_constant_identifier_names
 
   @override
   Widget build(BuildContext context) {
     initState();
     bool decide = false;
+
     return Column(
       children: [
         Container(
@@ -49,21 +53,21 @@ class _Conversation_State extends State<Conversation_> {
           height: 330,
           color: Colors.lightBlue.shade100,
           child: FutureBuilder(
-              future: Make_menus(menu_list, prt_menu),
+              future: Make_menus(prt_menu),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (snapshot.hasData == false) {
-                  return Center(
-                    child: Container(
+                  return const Center(
+                    child: SizedBox(
                       width: 30,
                       height: 30,
-                      child: CircularProgressIndicator(
+                      child: const CircularProgressIndicator(
                         color: Colors.amber,
                       ),
                     ),
                   );
                 } else if (snapshot.hasError) {
                   return Padding(
-                    padding: EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(8),
                     child: Text(
                       'Error : ${snapshot.error}',
                       style: TextStyle(fontSize: 20),
@@ -71,15 +75,15 @@ class _Conversation_State extends State<Conversation_> {
                   );
                 } else {
                   return Column(children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 60,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Container(
-                          padding: EdgeInsets.all(5),
-                          decoration: BoxDecoration(
+                          padding: const EdgeInsets.all(5),
+                          decoration: const BoxDecoration(
                               color: Colors.blue,
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(12),
@@ -87,15 +91,15 @@ class _Conversation_State extends State<Conversation_> {
                                   bottomLeft: Radius.circular(12))),
                           child: Text(
                             '${conver_list[0]}',
-                            style: TextStyle(fontSize: 20),
+                            style: const TextStyle(fontSize: 20),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 18,
                         )
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 60,
                     ),
                     FutureBuilder(
@@ -106,17 +110,19 @@ class _Conversation_State extends State<Conversation_> {
                             return Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                SizedBox(
+                                const SizedBox(
                                   width: 18,
                                 ),
                                 Container(
-                                  padding: EdgeInsets.all(5),
+                                  padding: const EdgeInsets.all(5),
                                   decoration: const BoxDecoration(
-                                      color: Colors.blue,
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(12),
-                                          topRight: Radius.circular(12),
-                                          bottomRight: Radius.circular(12))),
+                                    color: Colors.blue,
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(12),
+                                      topRight: Radius.circular(12),
+                                      bottomRight: Radius.circular(12),
+                                    ),
+                                  ),
                                   child: Text(
                                     prt_menu[0] == 'error'
                                         ? '다시 버튼을 눌러주세요'
@@ -134,7 +140,7 @@ class _Conversation_State extends State<Conversation_> {
                                   width: 18,
                                 ),
                                 Container(
-                                  padding: EdgeInsets.all(5),
+                                  padding: const EdgeInsets.all(5),
                                   decoration: const BoxDecoration(
                                     color: Colors.blue,
                                     borderRadius: BorderRadius.only(
@@ -165,41 +171,47 @@ class _Conversation_State extends State<Conversation_> {
           GestureDetector(
             onTap: () {},
             child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
-                decoration: BoxDecoration(
-                    // ignore: dead_code
-                    color: decide ? Colors.blueAccent : Colors.white,
-                    boxShadow: const [
-                      BoxShadow(
-                          color: Colors.grey,
-                          blurRadius: 45,
-                          blurStyle: BlurStyle.inner)
-                    ],
-                    borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(23),
-                        bottomRight: Radius.circular(23),
-                        topRight: Radius.circular(23))),
-                child: const Text(
-                  '결정!',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-                )),
+              padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+              decoration: BoxDecoration(
+                // ignore: dead_code
+                color: decide ? Colors.blueAccent : Colors.white,
+                boxShadow: const [
+                  BoxShadow(
+                      color: Colors.grey,
+                      blurRadius: 10,
+                      blurStyle: BlurStyle.inner),
+                ],
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(23),
+                  bottomRight: Radius.circular(23),
+                  topRight: Radius.circular(23),
+                ),
+              ),
+              child: const Text(
+                '결정!',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+              ),
+            ),
           ),
           GestureDetector(
             onTap: converReSt,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
               decoration: const BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.grey,
-                        blurRadius: 45,
-                        blurStyle: BlurStyle.inner)
-                  ],
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(23),
-                      bottomRight: Radius.circular(23),
-                      topRight: Radius.circular(23))),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey,
+                    blurRadius: 10,
+                    blurStyle: BlurStyle.inner,
+                  )
+                ],
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(23),
+                  bottomRight: Radius.circular(23),
+                  topRight: Radius.circular(23),
+                ),
+              ),
               child: const Text(
                 '다시!',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
@@ -212,51 +224,41 @@ class _Conversation_State extends State<Conversation_> {
   }
 }
 
-String rand_rt(List menuList, List prt_menu) {
-  int a = menuList.length;
+Future<String> Make_menus(prt_menu) async {
+  menu_list = await API_service.Quest_menu(menu_list);
+  a = menu_list.length;
+  prt_menu[0] = rand_rt(prt_menu);
+  return 'a';
+}
 
-  int randA = Random().nextInt(a) + 456;
-  // int randA = 465;
-  print(randA);
+String rand_rt(List<String> prt_menu) {
+  String rt = 'a';
+  int randA = Random().nextInt(a);
   bool key = true;
-  print(filter_id);
-  for (int i = 0; i < menuList.length; i++) {
-    if (menuList[i][0] == randA) {
-      for (int j = 2; j < menuList[i].length; j += 2) {
-        for (int q = 0; q < filter_id.length; q++) {
-          if (menuList[i][j].contains(filter_id[q])) {
-            key = !key;
-            break;
-          }
-        }
-        if (key == false) break;
-      }
-      if (!key) {
-        randA = Random().nextInt(a) + 456;
-        continue;
-      } else if (key == true) {
-        print(menuList[i]);
-        return menuList[i][1];
+  for (int i = 0; i < menu_list[randA].filterDtos!.length; i++) {
+    for (int j = 0; j < filter_id.length; j++) {
+      if (filter_id[j] == menu_list[randA].filterDtos![i].id.toString()) {
+        print(menu_list[randA].filterDtos![i].id);
+        key = false;
+        break;
       }
     }
+    if (key == false) {
+      break;
+    }
   }
-  return rand_rt(menuList, prt_menu);
+  if (key == false) {
+    rand_rt(prt_menu);
+  } else {
+    rt = menu_list[randA].name!;
+    return rt;
+  }
+  throw Error();
 }
+
+// ignore: camel_case_types
 
 Future<String> fectch() async {
   await Future.delayed(Duration(seconds: 1));
   return 'a';
-}
-
-Future<List<dynamic>> Make_menus(menu_list, prt_menu) async {
-  await API_service.Quest_menu(menu_list);
-  prt_menu[0] = (converState(menu_list, prt_menu));
-  print(prt_menu);
-
-  return menu_list;
-}
-
-String converState(menu_list, prt_menu) {
-  String a = rand_rt(menu_list, prt_menu);
-  return a;
 }

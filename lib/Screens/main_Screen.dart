@@ -28,7 +28,7 @@ class mainScreen extends StatelessWidget {
                 width: 13,
               ),
               Container(
-                  width: 280,
+                  width: 260,
                   height: 40,
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey),
@@ -56,13 +56,14 @@ class mainScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30))),
                   )),
               const SizedBox(
-                width: 14,
+                width: 12,
               ),
               IconButton(
                 onPressed: () {
                   print('Tap!');
                 },
                 icon: Image.asset('assets/설정창.png'),
+                iconSize: 10,
               ),
             ],
           )
