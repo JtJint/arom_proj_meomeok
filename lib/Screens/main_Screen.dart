@@ -25,10 +25,10 @@ class mainScreen extends StatelessWidget {
             children: [
               Image.asset('assets/아롬.png'),
               const SizedBox(
-                width: 13,
+                width: 5,
               ),
               Container(
-                width: 260,
+                width: 220,
                 height: 40,
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey),
@@ -58,15 +58,14 @@ class mainScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(
-                width: 12,
-              ),
+              // const SizedBox(
+              //   width: 12,
+              // ),
               IconButton(
                 onPressed: () {
                   print('Tap!');
                 },
                 icon: Image.asset('assets/설정창.png'),
-                iconSize: 10,
               ),
             ],
           )
@@ -81,7 +80,7 @@ class mainScreen extends StatelessWidget {
           children: [
             Container(
               color: Colors.white,
-              width: 430,
+              width: 240,
               height: 300,
               child: AdmobBanner(
                 adUnitId: 'ca-app-pub-7851651361129540/8261766226',
@@ -294,50 +293,55 @@ class main_icons extends StatefulWidget {
 class _main_iconsState extends State<main_icons> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => setState(
-        () {
-          widget.select = !widget.select;
-          if (widget.select == false) {
-            if (!widget.Filters.contains(widget.id_S)) {
-              widget.Filters.add(widget.id_S);
-            }
-            print(widget.Filters);
-            filteridSET(widget.Filters);
-          } else {
-            if (widget.Filters.contains(widget.id_S)) {
-              widget.Filters.remove(widget.id_S);
-              filteridSET(widget.Filters);
-              print(widget.Filters);
-            }
-          }
-        },
-      ),
-      child: Container(
-        decoration: BoxDecoration(
-            color: widget.select ? Colors.white : Colors.grey.shade200,
-            borderRadius: widget.top
-                ? (widget.number == 1
-                    ? BorderRadius.only(topLeft: Radius.circular(12))
-                    : widget.number == 4
-                        ? BorderRadius.only(topRight: Radius.circular(12))
-                        : null)
-                : (widget.number == 1
-                    ? BorderRadius.only(bottomLeft: Radius.circular(12))
-                    : widget.number == 4
-                        ? BorderRadius.only(bottomRight: Radius.circular(12))
-                        : null),
-            border: Border.all(color: Colors.white)),
-        padding: EdgeInsets.all(4),
-        child: Row(
-          children: [
-            Container(
-              width: 90,
-              child: widget.image1,
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: () => setState(
+            () {
+              widget.select = !widget.select;
+              if (widget.select == false) {
+                if (!widget.Filters.contains(widget.id_S)) {
+                  widget.Filters.add(widget.id_S);
+                }
+                print(widget.Filters);
+                filteridSET(widget.Filters);
+              } else {
+                if (widget.Filters.contains(widget.id_S)) {
+                  widget.Filters.remove(widget.id_S);
+                  filteridSET(widget.Filters);
+                  print(widget.Filters);
+                }
+              }
+            },
+          ),
+          child: Container(
+            decoration: BoxDecoration(
+                color: widget.select ? Colors.white : Colors.grey.shade200,
+                borderRadius: widget.top
+                    ? (widget.number == 1
+                        ? BorderRadius.only(topLeft: Radius.circular(12))
+                        : widget.number == 4
+                            ? BorderRadius.only(topRight: Radius.circular(12))
+                            : null)
+                    : (widget.number == 1
+                        ? BorderRadius.only(bottomLeft: Radius.circular(12))
+                        : widget.number == 4
+                            ? BorderRadius.only(
+                                bottomRight: Radius.circular(12))
+                            : null),
+                border: Border.all(color: Colors.white)),
+            padding: EdgeInsets.all(4),
+            child: Row(
+              children: [
+                Container(
+                  width: 80,
+                  child: widget.image1,
+                ),
+              ],
             ),
-          ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }
