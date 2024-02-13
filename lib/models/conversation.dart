@@ -248,12 +248,12 @@ String rand_rt(List<String> prt_menu) {
     }
   }
   if (key == false) {
-    rand_rt(prt_menu);
+    return rand_rt(prt_menu);
   } else {
     rt = menu_list[randA].name!;
     return rt;
   }
-  throw Error();
+  // throw Error();
 }
 
 // ignore: camel_case_types
