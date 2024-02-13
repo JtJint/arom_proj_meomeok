@@ -28,33 +28,36 @@ class mainScreen extends StatelessWidget {
                 width: 13,
               ),
               Container(
-                  width: 260,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(14),
+                width: 260,
+                height: 40,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                child: SearchBar(
+                  trailing: [
+                    Image.asset(
+                      'assets/돋보기.png',
+                      color: Colors.grey,
+                    ),
+                  ],
+                  hintText: "오늘은 머먹지..?",
+                  hintStyle: const MaterialStatePropertyAll(
+                      TextStyle(color: Colors.grey)),
+                  textStyle: const MaterialStatePropertyAll(
+                      TextStyle(color: Colors.black, fontSize: 13)),
+                  backgroundColor: const MaterialStatePropertyAll(Colors.white),
+                  shadowColor: const MaterialStatePropertyAll(Colors.white),
+                  elevation: const MaterialStatePropertyAll(0),
+                  overlayColor:
+                      MaterialStatePropertyAll(Colors.blueAccent.shade200),
+                  shape: MaterialStatePropertyAll(
+                    ContinuousRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
                   ),
-                  child: SearchBar(
-                    trailing: [
-                      Image.asset(
-                        'assets/돋보기.png',
-                        color: Colors.grey,
-                      ),
-                    ],
-                    hintText: "오늘은 머먹지..?",
-                    hintStyle: const MaterialStatePropertyAll(
-                        TextStyle(color: Colors.grey)),
-                    textStyle: const MaterialStatePropertyAll(
-                        TextStyle(color: Colors.black, fontSize: 13)),
-                    backgroundColor:
-                        const MaterialStatePropertyAll(Colors.white),
-                    shadowColor: const MaterialStatePropertyAll(Colors.white),
-                    elevation: const MaterialStatePropertyAll(0),
-                    overlayColor:
-                        MaterialStatePropertyAll(Colors.blueAccent.shade200),
-                    shape: MaterialStatePropertyAll(ContinuousRectangleBorder(
-                        borderRadius: BorderRadius.circular(30))),
-                  )),
+                ),
+              ),
               const SizedBox(
                 width: 12,
               ),
@@ -77,7 +80,7 @@ class mainScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              color: Colors.green,
+              color: Colors.white,
               width: 430,
               height: 300,
               child: AdmobBanner(
