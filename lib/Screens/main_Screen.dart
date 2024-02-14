@@ -28,7 +28,7 @@ class mainScreen extends StatelessWidget {
                 width: 5,
               ),
               Container(
-                width: 220,
+                width: 260,
                 height: 40,
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey),
@@ -80,7 +80,7 @@ class mainScreen extends StatelessWidget {
           children: [
             Container(
               color: Colors.white,
-              width: 240,
+              width: 400,
               height: 300,
               child: AdmobBanner(
                 adUnitId: 'ca-app-pub-7851651361129540/8261766226',

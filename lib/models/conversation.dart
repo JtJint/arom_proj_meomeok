@@ -203,7 +203,7 @@ class _Conversation_State extends State<Conversation_> {
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.hasData) {
                     String _surl = _url + prt_menu[0] + '만드는 법';
-                    String purl = prt_menu[0] + '만드는 법';
+                    String purl = prt_menu[0] + ' 만드는 법';
                     return GestureDetector(
                       onTap: () {
                         launchUrl(Uri.parse(_surl));
